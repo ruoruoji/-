@@ -1,9 +1,10 @@
-import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
+import { getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import { Helmet } from 'react-helmet';
 import { Link } from 'umi';
 import React from 'react';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';
+import FooterRender from '@/components/Footer'
 
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
@@ -48,7 +49,7 @@ const UserLayout = props => {
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <FooterRender />
       </div>
     </>
   );

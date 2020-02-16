@@ -3,16 +3,16 @@
  * You can view component api by:
  * https://github.com/ant-design/ant-design-pro-layout
  */
-import ProLayout, { DefaultFooter, SettingDrawer } from '@ant-design/pro-layout';
+import ProLayout, { SettingDrawer } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
-import { GithubOutlined } from '@ant-design/icons';
 import { Result, Button } from 'antd';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
-import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
+import FooterRender from '@/components/Footer';
+import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -36,58 +36,6 @@ const menuDataRender = menuList =>
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
     return Authorized.check(item.authority, localItem, null);
   });
-
-const defaultFooterDom = (
-  <DefaultFooter
-    copyright="2019 蚂蚁金服体验技术部出品"
-    links={[
-      {
-        key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
-        href: 'https://pro.ant.design',
-        blankTarget: true,
-      },
-      {
-        key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
-        blankTarget: true,
-      },
-      {
-        key: 'Ant Design',
-        title: 'Ant Design',
-        href: 'https://ant.design',
-        blankTarget: true,
-      },
-    ]}
-  />
-);
-
-const footerRender = () => {
-  if (!isAntDesignPro()) {
-    return defaultFooterDom;
-  }
-
-  return (
-    <>
-      {defaultFooterDom}
-      <div
-        style={{
-          padding: '0px 24px 24px',
-          textAlign: 'center',
-        }}
-      >
-        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
-            width="82px"
-            alt="netlify logo"
-          />
-        </a>
-      </div>
-    </>
-  );
-};
 
 const BasicLayout = props => {
   const {
@@ -129,6 +77,7 @@ const BasicLayout = props => {
     <>
       <ProLayout
         logo={logo}
+        // 国际化
         formatMessage={formatMessage}
         menuHeaderRender={(logoDom, titleDom) => (
           <Link to="/">
@@ -136,7 +85,9 @@ const BasicLayout = props => {
             {titleDom}
           </Link>
         )}
+        // 左侧伸缩展开样式调整
         onCollapse={handleMenuCollapse}
+
         menuItemRender={(menuItemProps, defaultDom) => {
           if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
             return defaultDom;
@@ -159,8 +110,11 @@ const BasicLayout = props => {
             <span>{route.breadcrumbName}</span>
           );
         }}
-        footerRender={footerRender}
+        // 备案等信息
+        footerRender={FooterRender}
+        // 以路由中的config导出菜单为约定，根据登陆的角色权限对menuList筛选得到符合权限的菜单
         menuDataRender={menuDataRender}
+        // GlobalHeader/RightContent
         rightContentRender={() => <RightContent />}
         {...props}
         {...settings}
@@ -169,6 +123,7 @@ const BasicLayout = props => {
           {children}
         </Authorized>
       </ProLayout>
+      {/* 右全局ui手动配置 */}
       <SettingDrawer
         settings={settings}
         onSettingChange={config =>
