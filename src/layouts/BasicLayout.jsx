@@ -13,6 +13,7 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import FooterRender from '@/components/Footer';
 import { getAuthorityFromRouter } from '@/utils/utils';
+
 import logo from '../assets/logo.svg';
 
 const noMatch = (

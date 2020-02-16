@@ -4,6 +4,7 @@ import check from './CheckPermissions';
 
 const Authorized = ({
   children,
+  // config中路由的authority
   authority,
   noMatch = (
     <Result

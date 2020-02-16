@@ -77,6 +77,7 @@ class Login extends Component {
     const { userAndlogin, submitting } = this.props;
     const { status, type: loginType } = userAndlogin;
     const { type, autoLogin } = this.state;
+
     return (
       <div className={styles.main}>
         <LoginComponents

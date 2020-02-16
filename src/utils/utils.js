@@ -33,6 +33,8 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
   if (authority) return authority;
   return undefined;
 };
+
+// 获取config中路由配置的authority字段对应的数组
 export const getRouteAuthority = (path, routeData) => {
   let authorities;
   routeData.forEach(route => {

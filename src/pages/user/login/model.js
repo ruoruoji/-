@@ -1,3 +1,4 @@
+// import { router } from 'umi';
 import { routerRedux } from 'dva/router';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { getPageQuery, setAuthority } from './utils/utils';
@@ -34,7 +35,6 @@ const Model = {
             return;
           }
         }
-
         yield put(routerRedux.replace(redirect || '/'));
       }
     },

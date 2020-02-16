@@ -3,6 +3,7 @@ import { router } from 'umi';
 import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+
 const Model = {
   namespace: 'login',
   state: {
@@ -31,6 +32,7 @@ const Model = {
               redirect = redirect.substr(redirect.indexOf('#') + 1);
             }
           } else {
+            // 跳转到首页
             window.location.href = '/';
             return;
           }
