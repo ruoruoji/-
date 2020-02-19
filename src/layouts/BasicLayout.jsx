@@ -38,6 +38,13 @@ const menuDataRender = menuList =>
     return Authorized.check(item.authority, localItem, null);
   });
 
+/**
+ * 在约定路由映射菜单的基础上定制自己的菜单
+ */
+const filterMenu = ['/result', '/exception', '/account'];
+const custoMenuDataRender = menuList =>
+  menuDataRender(menuList).filter(item => !filterMenu.find(i => i === item.path));
+
 const BasicLayout = props => {
   const {
     dispatch,
@@ -88,7 +95,6 @@ const BasicLayout = props => {
         )}
         // 左侧伸缩展开样式调整
         onCollapse={handleMenuCollapse}
-
         menuItemRender={(menuItemProps, defaultDom) => {
           if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
             return defaultDom;
@@ -114,7 +120,7 @@ const BasicLayout = props => {
         // 备案等信息
         footerRender={FooterRender}
         // 以路由中的config导出菜单为约定，根据登陆的角色权限对menuList筛选得到符合权限的菜单
-        menuDataRender={menuDataRender}
+        menuDataRender={custoMenuDataRender}
         // GlobalHeader/RightContent
         rightContentRender={() => <RightContent />}
         {...props}

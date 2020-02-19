@@ -281,6 +281,12 @@ export default {
                   path: '/account/settings',
                   component: './account/settings',
                 },
+                {
+                  name: '个人中心',
+                  icon: 'smile',
+                  path: '/account/center',
+                  component: './account/center',
+                },
               ],
             },
             {
@@ -336,7 +342,8 @@ export default {
   },
   manifest: {
     basePath: '/',
-  }, // chainWebpack: webpackPlugin,
+  },
+  // chainWebpack: webpackPlugin,
   // proxy: {
   //   '/server/api/': {
   //     target: 'https://preview.pro.ant.design/',
