@@ -120,7 +120,7 @@ class Login extends Component {
               name="password"
               placeholder={`${formatMessage({
                 id: 'userandlogin.login.password',
-              })}: ant.design`}
+              })}: 123456`}
               rules={[
                 {
                   required: true,
