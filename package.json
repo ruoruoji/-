@@ -30,6 +30,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
       "pre-commit": "npm run lint-staged"
     }
   },
@@ -92,6 +93,8 @@
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^1.0.17",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@types/classnames": "^2.2.7",
     "@types/express": "^4.17.0",
     "@types/history": "^4.7.2",
