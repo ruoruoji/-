@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+
 # -
+
 =======
+
 # Ant Design Pro
 
 This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
@@ -58,4 +61,5 @@ npm test
 ## More
 
 You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
->>>>>>> feat: 基于antd pro初始化项目
+
+> > > > > > > feat: 基于 antd pro 初始化项目
