@@ -4,6 +4,7 @@
  * https://github.com/ant-design/ant-design-pro-layout
  */
 import ProLayout, { SettingDrawer } from '@ant-design/pro-layout';
+import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
@@ -85,6 +86,7 @@ const BasicLayout = props => {
       <ProLayout
         logo={logo}
         // 国际化
+        formatMessage={formatMessage}
         menuHeaderRender={(logoDom, titleDom) => (
           <Link to="/">
             {logoDom}

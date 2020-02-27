@@ -282,7 +282,7 @@ export default {
                   component: './account/settings',
                 },
                 {
-                  name: '个人中心',
+                  name: 'center',
                   icon: 'smile',
                   path: '/account/center',
                   component: './account/center',

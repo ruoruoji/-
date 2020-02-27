@@ -9,8 +9,7 @@ export default {
   fixSiderbar: false,
   colorWeak: false,
   menu: {
-    disableLocal: true,
-    // locale: true,
+    locale: true,
   },
   title: '科研信息管理平台',
   pwa: false,
