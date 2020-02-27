@@ -2,10 +2,8 @@ import { getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import { Helmet } from 'react-helmet';
 import { Link } from 'umi';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';
-import FooterRender from '@/components/Footer'
-
+import FooterRender from '@/components/Footer';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
 
@@ -25,7 +23,6 @@ const UserLayout = props => {
   const { breadcrumb } = getMenuData(routes);
   const title = getPageTitle({
     pathname: location.pathname,
-    formatMessage,
     breadcrumb,
     ...props,
   });

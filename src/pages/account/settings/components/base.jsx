@@ -2,7 +2,6 @@ import { UploadOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Button, Input, Select, Upload, message } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import GeographicView from './GeographicView';
@@ -14,9 +13,7 @@ const { Option } = Select; // 头像组件 方便以后独立，增加裁剪之�
 
 const AvatarView = ({ avatar }) => (
   <Fragment>
-    <div className={styles.avatar_title}>
-      <FormattedMessage id="accountandsettings.basic.avatar" defaultMessage="Avatar" />
-    </div>
+    <div className={styles.avatar_title}>头像</div>
     <div className={styles.avatar}>
       <img src={avatar} alt="avatar" />
     </div>
@@ -24,10 +21,7 @@ const AvatarView = ({ avatar }) => (
       <div className={styles.button_view}>
         <Button>
           <UploadOutlined />
-          <FormattedMessage
-            id="accountandsettings.basic.change-avatar"
-            defaultMessage="Change avatar"
-          />
+          更换头像
         </Button>
       </div>
     </Upload>
@@ -105,11 +99,7 @@ class BaseView extends Component {
     const { form } = this.props;
     form.validateFields(err => {
       if (!err) {
-        message.success(
-          formatMessage({
-            id: 'accountandsettings.basic.update.success',
-          }),
-        );
+        message.success('更新基本信息成功');
       }
     });
   };
@@ -122,85 +112,42 @@ class BaseView extends Component {
       <div className={styles.baseView} ref={this.getViewDom}>
         <div className={styles.left}>
           <Form layout="vertical" hideRequiredMark>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.email',
-              })}
-            >
+            <FormItem label="邮箱">
               {getFieldDecorator('email', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.email-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的邮箱!',
                   },
                 ],
               })(<Input />)}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.nickname',
-              })}
-            >
+            <FormItem label="昵称">
               {getFieldDecorator('name', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.nickname-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的昵称!',
                   },
                 ],
               })(<Input />)}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.profile',
-              })}
-            >
+            <FormItem label="个人简介">
               {getFieldDecorator('profile', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.profile-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入个人简介!',
                   },
                 ],
-              })(
-                <Input.TextArea
-                  placeholder={formatMessage({
-                    id: 'accountandsettings.basic.profile-placeholder',
-                  })}
-                  rows={4}
-                />,
-              )}
+              })(<Input.TextArea placeholder="个人简介" rows={4} />)}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.country',
-              })}
-            >
+            <FormItem label="国家/地区">
               {getFieldDecorator('country', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.country-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的国家或地区!',
                   },
                 ],
               })(
@@ -213,21 +160,12 @@ class BaseView extends Component {
                 </Select>,
               )}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.geographic',
-              })}
-            >
+            <FormItem label="所在省市">
               {getFieldDecorator('geographic', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.geographic-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的所在省市!',
                   },
                   {
                     validator: validatorGeographic,
@@ -235,40 +173,22 @@ class BaseView extends Component {
                 ],
               })(<GeographicView />)}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.address',
-              })}
-            >
+            <FormItem label="街道地址">
               {getFieldDecorator('address', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.address-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的街道地址!',
                   },
                 ],
               })(<Input />)}
             </FormItem>
-            <FormItem
-              label={formatMessage({
-                id: 'accountandsettings.basic.phone',
-              })}
-            >
+            <FormItem label="联系电话">
               {getFieldDecorator('phone', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage(
-                      {
-                        id: 'accountandsettings.basic.phone-message',
-                      },
-                      {},
-                    ),
+                    message: '请输入您的联系电话!',
                   },
                   {
                     validator: validatorPhone,
@@ -277,10 +197,7 @@ class BaseView extends Component {
               })(<PhoneView />)}
             </FormItem>
             <Button type="primary" onClick={this.handlerSubmit}>
-              <FormattedMessage
-                id="accountandsettings.basic.update"
-                defaultMessage="Update Information"
-              />
+              更新基本信息
             </Button>
           </Form>
         </div>

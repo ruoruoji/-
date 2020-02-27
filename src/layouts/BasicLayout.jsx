@@ -4,7 +4,6 @@
  * https://github.com/ant-design/ant-design-pro-layout
  */
 import ProLayout, { SettingDrawer } from '@ant-design/pro-layout';
-import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
@@ -13,7 +12,6 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import FooterRender from '@/components/Footer';
 import { getAuthorityFromRouter } from '@/utils/utils';
-
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -37,11 +35,12 @@ const menuDataRender = menuList =>
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
     return Authorized.check(item.authority, localItem, null);
   });
-
 /**
  * 在约定路由映射菜单的基础上定制自己的菜单
  */
+
 const filterMenu = ['/result', '/exception', '/account'];
+
 const custoMenuDataRender = menuList =>
   menuDataRender(menuList).filter(item => !filterMenu.find(i => i === item.path));
 
@@ -86,7 +85,6 @@ const BasicLayout = props => {
       <ProLayout
         logo={logo}
         // 国际化
-        formatMessage={formatMessage}
         menuHeaderRender={(logoDom, titleDom) => (
           <Link to="/">
             {logoDom}
