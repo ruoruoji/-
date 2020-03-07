@@ -93,11 +93,11 @@ class Login extends Component {
               this.renderMessage('账户或密码错误（admin/ant.design）')}
             <UserName
               name="userName"
-              placeholder={`${'用户名'}: admin or user`}
+              placeholder={`${'工号'}: admin or user`}
               rules={[
                 {
                   required: true,
-                  message: '请输入用户名!',
+                  message: '请输入工号!',
                 },
               ]}
             />
@@ -119,44 +119,49 @@ class Login extends Component {
               }}
             />
           </Tab>
-          <Tab key="mobile" tab="手机号登录">
-            {status === 'error' &&
-              loginType === 'mobile' &&
-              !submitting &&
-              this.renderMessage('验证码错误')}
-            <Mobile
-              name="mobile"
-              placeholder="手机号"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入手机号！',
-                },
-                {
-                  pattern: /^1\d{10}$/,
-                  message: '手机号格式错误！',
-                },
-              ]}
-            />
-            <Captcha
-              name="captcha"
-              placeholder="验证码"
-              countDown={120}
-              onGetCaptcha={this.onGetCaptcha}
-              getCaptchaButtonText="获取验证码"
-              getCaptchaSecondText="秒"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入验证码！',
-                },
-              ]}
-            />
-          </Tab>
+          {null && (
+            <Tab key="mobile" tab="手机号登录">
+              {status === 'error' &&
+                loginType === 'mobile' &&
+                !submitting &&
+                this.renderMessage('验证码错误')}
+              <Mobile
+                name="mobile"
+                placeholder="手机号"
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入手机号！',
+                  },
+                  {
+                    pattern: /^1\d{10}$/,
+                    message: '手机号格式错误！',
+                  },
+                ]}
+              />
+              <Captcha
+                name="captcha"
+                placeholder="验证码"
+                countDown={120}
+                onGetCaptcha={this.onGetCaptcha}
+                getCaptchaButtonText="获取验证码"
+                getCaptchaSecondText="秒"
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入验证码！',
+                  },
+                ]}
+              />
+            </Tab>
+          )}
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               自动登录
             </Checkbox>
+            <Link className={styles.register} to="/user/register">
+              注册账户
+            </Link>
             <a
               style={{
                 float: 'right',
@@ -167,15 +172,14 @@ class Login extends Component {
             </a>
           </div>
           <Submit loading={submitting}>登录</Submit>
-          <div className={styles.other}>
-            其他登录方式
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
-            <Link className={styles.register} to="/user/register">
-              注册账户
-            </Link>
-          </div>
+          {null && (
+            <div className={styles.other}>
+              其他登录方式
+              <AlipayCircleOutlined className={styles.icon} />
+              <TaobaoCircleOutlined className={styles.icon} />
+              <WeiboCircleOutlined className={styles.icon} />
+            </div>
+          )}
         </LoginComponents>
       </div>
     );

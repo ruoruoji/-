@@ -14,10 +14,29 @@
     }
   }
 
-  h3 {
-    margin-bottom: 20px;
-    font-size: 16px;
-    text-align: center;
+  .head {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    .wrapper {
+      cursor: pointer;
+
+      .title {
+        display: inline-block;
+        padding: 10px 0;
+        color: #1890ff;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .underline {
+        bottom: 1px;
+        z-index: 1;
+        box-sizing: border-box;
+        height: 2px;
+        background-color: #1890ff;
+      }
+    }
   }
 
   .getCaptcha {
